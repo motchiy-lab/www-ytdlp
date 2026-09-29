@@ -1,7 +1,3 @@
-# yt-dlp on Motchiy
-
-既存サイトのフロントエンドをAstroで静的生成します。元のPHPファイルは `www-ytdlp-old-main` に残してあり、URL送信とサーバー側のダウンロード処理は移行対象外です。
-
 ## コマンド
 
 ```sh
