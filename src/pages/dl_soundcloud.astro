@@ -1,9 +1,51 @@
 ---
-import Downloader from '../components/Downloader.astro';
-const description = 'yt-dlp on Motchiyでは、Soundcloudの音声、カバーアートのダウンロードが行えます。完全無料でログインなどは不要、安全に動画をダウンロードできます！';
+import Downloader from "../components/Downloader.astro";
+const description =
+    "yt-dlp on Motchiyでは、Soundcloudの音声、カバーアートのダウンロードが行えます。完全無料でログインなどは不要、安全に動画をダウンロードできます！";
 const groups = [
-  { title: '音声', buttons: [{ label: 'MP3', value: 'mp3' }, { label: 'WAV', value: 'wav' }], more: { title: 'その他の音声コーデック', buttons: [{ label: 'OGG', value: 'ogg' }, { label: 'F4A', value: 'f4a' }, { label: 'FLAC', value: 'flac' }, { label: 'ALAC', value: 'alac' }, { label: 'AAC', value: 'aac' }, { label: 'M4A', value: 'm4a' }, { label: 'OPUS', value: 'opus' }] } },
-  { title: 'カバーアート', buttons: [{ label: 'JPEG', value: 'jpg' }, { label: 'PNG', value: 'png' }], more: { title: 'その他の画像形式', buttons: [{ label: 'WEBP', value: 'webp' }, { label: 'BMP', value: 'bmp' }, { label: 'AVIF', value: 'avif' }, { label: 'GIF', value: 'gif' }] } },
+    {
+        title: "音声",
+        buttons: [
+            { label: "MP3", value: "mp3" },
+            { label: "WAV", value: "wav" },
+        ],
+        more: {
+            title: "その他の音声コーデック",
+            buttons: [
+                { label: "OGG", value: "ogg" },
+                { label: "F4A", value: "f4a" },
+                { label: "FLAC", value: "flac" },
+                { label: "ALAC", value: "alac" },
+                { label: "AAC", value: "aac" },
+                { label: "M4A", value: "m4a" },
+                { label: "OPUS", value: "opus" },
+            ],
+        },
+    },
+    {
+        title: "カバーアート",
+        buttons: [
+            { label: "JPEG", value: "jpg" },
+            { label: "PNG", value: "png" },
+        ],
+        more: {
+            title: "その他の画像形式",
+            buttons: [
+                { label: "WEBP", value: "webp" },
+                { label: "BMP", value: "bmp" },
+                { label: "AVIF", value: "avif" },
+                { label: "GIF", value: "gif" },
+            ],
+        },
+    },
 ];
 ---
-<Downloader pageTitle="yt-dlp on Motchiy - Soundcloudの楽曲を完全無料でダウンロード！" description={description} canonicalPath="/dl_soundcloud.html" heading="Soundcloud楽曲ダウンロード" placeholder="SoundcloudのURLを入力" groups={groups} />
+
+<Downloader
+    pageTitle="yt-dlp on Motchiy - Soundcloudの楽曲を完全無料でダウンロード！"
+    description={description}
+    canonicalPath="/dl_soundcloud.html"
+    heading="Soundcloud楽曲ダウンロード"
+    placeholder="SoundcloudのURLを入力"
+    groups={groups}
+/>

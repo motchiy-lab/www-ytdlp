@@ -1,9 +1,33 @@
 ---
-import ErrorPage from '../components/ErrorPage.astro';
-const description = 'yt-dlp on Motchiyをホストしているサーバーの空き容量が不足しており、サービスを正常に提供できません。';
+import ErrorPage from "../components/ErrorPage.astro";
+const description =
+    "yt-dlp on Motchiyをホストしているサーバーの空き容量が不足しており、サービスを正常に提供できません。";
 ---
-<ErrorPage pageTitle="yt-dlp on Motchiy - 507 Insufficient Storage" description={description} canonicalPath="/507.html" heading="507 Insufficient Storage / 容量不足" image="https://ytdlp.motchiy.com/imgs/507.jpg" imageAlt="Insufficient Storageなカールツァイス">
-  <p>yt-dlp on Motchiyでのダウンロード中にエラーが発生しました。<br /><b>サービスをホストしているサーバーの空き容量が不足しています。</b><br />ちょっとだけ内部的な話をすると、yt-dlp on Motchiyではプログラム実行時に空き容量が一定以下の場合は強制中断して507を吐くように設定してあります。そこそこ逼迫した状況なわけですね。</p>
-  <p>現在の状況を<a href="https://x.com/leoved-kuru/">僕のTwitter</a>、または<a href="https://x.com/motchiy_tuti/">サーバー運営者のTwitter</a>にDMをください。<br />可能な限り早急に容量確保を進めます。多分……。でもお金がなくてストレージ増設できないかも。</p>
-  <p><a href="/">トップページ</a>へ戻ることができます。</p>
+
+<ErrorPage
+    pageTitle="yt-dlp on Motchiy - 507 Insufficient Storage"
+    description={description}
+    canonicalPath="/507.html"
+    heading="507 Insufficient Storage / 容量不足"
+    image="https://ytdlp.motchiy.com/imgs/507.jpg"
+    imageAlt="Insufficient Storageなカールツァイス"
+>
+    <p>
+        yt-dlp on Motchiyでのダウンロード中にエラーが発生しました。
+        <br />
+        <b>サービスをホストしているサーバーの空き容量が不足しています。</b>
+        <br />
+        ちょっとだけ内部的な話をすると、yt-dlp on
+        Motchiyではプログラム実行時に空き容量が一定以下の場合は強制中断して507を吐くように設定してあります。そこそこ逼迫した状況なわけですね。
+    </p>
+    <p>
+        現在の状況を<a href="https://x.com/leoved-kuru/">僕のTwitter</a>、または
+        <a href="https://x.com/motchiy_tuti/">サーバー運営者のTwitter</a>
+        にDMをください。
+        <br />
+        可能な限り早急に容量確保を進めます。多分……。でもお金がなくてストレージ増設できないかも。
+    </p>
+    <p>
+        <a href="/">トップページ</a>へ戻ることができます。
+    </p>
 </ErrorPage>

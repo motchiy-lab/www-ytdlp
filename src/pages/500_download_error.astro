@@ -1,8 +1,28 @@
 ---
-import ErrorPage from '../components/ErrorPage.astro';
+import ErrorPage from "../components/ErrorPage.astro";
 ---
-<ErrorPage pageTitle="yt-dlp on Motchiy - Download Error" description="yt-dlp on Motchiyでダウンロードが失敗しました。" canonicalPath="/500_download_error.html" heading="Download Error / ダウンロードエラー" image="https://ytdlp.motchiy.com/imgs/500_de.jpg" imageAlt="ダウンロードエラーなカールツァイス">
-  <p><b>yt-dlp on Motchiyでのダウンロード中にエラーが発生しました。</b> ダウンロード中のファイルの処理に問題が起きた、中断された可能性が高いです。</p>
-  <p>しばらく待ってから再びお試しください。<br />それでもこの状況が治らない場合は、<a href="https://x.com/leoved-kuru/">僕のTwitter</a>にDMをください。<br />なお、その場合は何をダウンロードしようとしたのかや、端末情報などを添えていただけると解決がしやすくなります。ご協力よろしくお願いします。</p>
-  <p><a href="/">トップページ</a>へ戻ることができます。</p>
+
+<ErrorPage
+    pageTitle="yt-dlp on Motchiy - Download Error"
+    description="yt-dlp on Motchiyでダウンロードが失敗しました。"
+    canonicalPath="/500_download_error.html"
+    heading="Download Error / ダウンロードエラー"
+    image="https://ytdlp.motchiy.com/imgs/500_de.jpg"
+    imageAlt="ダウンロードエラーなカールツァイス"
+>
+    <p>
+        <b>yt-dlp on Motchiyでのダウンロード中にエラーが発生しました。</b>{" "}
+        ダウンロード中のファイルの処理に問題が起きた、中断された可能性が高いです。
+    </p>
+    <p>
+        しばらく待ってから再びお試しください。
+        <br />
+        それでもこの状況が治らない場合は、
+        <a href="https://x.com/leoved-kuru/">僕のTwitter</a>にDMをください。
+        <br />
+        なお、その場合は何をダウンロードしようとしたのかや、端末情報などを添えていただけると解決がしやすくなります。ご協力よろしくお願いします。
+    </p>
+    <p>
+        <a href="/">トップページ</a>へ戻ることができます。
+    </p>
 </ErrorPage>

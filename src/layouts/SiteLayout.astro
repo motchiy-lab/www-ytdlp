@@ -1,12 +1,12 @@
 ---
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteBanners from '../components/SiteBanners.astro';
-import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteBanners from "../components/SiteBanners.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 
 interface Props {
-  title: string;
-  description: string;
-  canonicalPath: string;
+    title: string;
+    description: string;
+    canonicalPath: string;
 }
 
 const { title, description, canonicalPath } = Astro.props;
@@ -15,40 +15,52 @@ const canonicalUrl = `https://ytdlp.motchiy.com${canonicalPath}`;
 
 <!doctype html>
 <html lang="ja" prefix="og: https://ogp.me/ns#">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="canonical" href={canonicalUrl} />
-    <title>{title}</title>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="icon" href="/imgs/favicon.png" type="image/png" />
-    <meta name="description" content={description} />
-    <meta name="keywords" content="YouTube,ダウンロード" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="https://ytdlp.motchiy.com/imgs/ogp.png" />
-    <meta property="og:site_name" content="yt-dlp on Motchiy" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://ytdlp.motchiy.com/imgs/ogp.png" />
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-DSTX3Y6HY5"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DSTX3Y6HY5');
-    </script>
-    <slot name="head" />
-  </head>
-  <body>
-    <SiteHeader />
-    <main>
-      <SiteBanners />
-      <slot />
-    </main>
-    <SiteFooter />
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={canonicalUrl} />
+        <title>{title}</title>
+        <link rel="stylesheet" href="/style.css" />
+        <link rel="icon" href="/imgs/favicon.png" type="image/png" />
+        <meta name="description" content={description} />
+        <meta name="keywords" content="YouTube,ダウンロード" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta
+            property="og:image"
+            content="https://ytdlp.motchiy.com/imgs/ogp.png"
+        />
+        <meta property="og:site_name" content="yt-dlp on Motchiy" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+            name="twitter:image"
+            content="https://ytdlp.motchiy.com/imgs/ogp.png"
+        />
+        <script
+            is:inline
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-DSTX3Y6HY5"
+        ></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-DSTX3Y6HY5");
+        </script>
+        <slot name="head" />
+    </head>
+    <body>
+        <SiteHeader />
+        <main>
+            <SiteBanners />
+            <slot />
+        </main>
+        <SiteFooter />
+    </body>
 </html>

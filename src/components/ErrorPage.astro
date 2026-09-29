@@ -1,23 +1,28 @@
 ---
-import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteLayout from "../layouts/SiteLayout.astro";
 
 interface Props {
-  pageTitle: string;
-  description: string;
-  canonicalPath: string;
-  heading: string;
-  image: string;
-  imageAlt: string;
+    pageTitle: string;
+    description: string;
+    canonicalPath: string;
+    heading: string;
+    image: string;
+    imageAlt: string;
 }
 
-const { pageTitle, description, canonicalPath, heading, image, imageAlt } = Astro.props;
+const { pageTitle, description, canonicalPath, heading, image, imageAlt } =
+    Astro.props;
 ---
 
-<SiteLayout title={pageTitle} description={description} canonicalPath={canonicalPath}>
-  <hr />
-  <div class="documents-container">
-    <h1 class="headline">{heading}</h1>
-    <img src={image} class="thumbnail" alt={imageAlt} />
-    <slot />
-  </div>
+<SiteLayout
+    title={pageTitle}
+    description={description}
+    canonicalPath={canonicalPath}
+>
+    <hr />
+    <div class="documents-container">
+        <h1 class="headline">{heading}</h1>
+        <img src={image} class="thumbnail" alt={imageAlt} />
+        <slot />
+    </div>
 </SiteLayout>

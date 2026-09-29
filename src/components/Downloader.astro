@@ -1,75 +1,118 @@
 ---
-import SiteLayout from '../layouts/SiteLayout.astro';
-import AvailableServices from './AvailableServices.astro';
+import SiteLayout from "../layouts/SiteLayout.astro";
+import AvailableServices from "./AvailableServices.astro";
 
 interface FormatGroup {
-  title: string;
-  buttons: { label: string; value: string }[];
-  more?: { title: string; buttons: { label: string; value: string }[] };
+    title: string;
+    buttons: { label: string; value: string }[];
+    more?: { title: string; buttons: { label: string; value: string }[] };
 }
 
 interface Props {
-  pageTitle: string;
-  description: string;
-  canonicalPath: string;
-  heading: string;
-  placeholder: string;
-  groups: FormatGroup[];
-  noticeDate?: string;
-  showBrand?: boolean;
+    pageTitle: string;
+    description: string;
+    canonicalPath: string;
+    heading: string;
+    placeholder: string;
+    groups: FormatGroup[];
+    noticeDate?: string;
+    showBrand?: boolean;
 }
 
-const { pageTitle, description, canonicalPath, heading, placeholder, groups, noticeDate, showBrand = true } = Astro.props;
-const hasNotice = Astro.slots.has('notice') || Boolean(noticeDate);
+const {
+    pageTitle,
+    description,
+    canonicalPath,
+    heading,
+    placeholder,
+    groups,
+    noticeDate,
+    showBrand = true,
+} = Astro.props;
+const hasNotice = Astro.slots.has("notice") || Boolean(noticeDate);
 ---
 
-<SiteLayout title={pageTitle} description={description} canonicalPath={canonicalPath}>
-  <hr />
-  <div class="documents-container">
-    <br />
-    {hasNotice && (
-      <div class="message-container">
-        <slot name="notice" />
-        {noticeDate && <i>{noticeDate}</i>}
-      </div>
-    )}
-    {showBrand && <p style="text-align:center;">yt-dlp on Motchiy</p>}
-    <h1 style="text-align:center;">{heading}</h1>
-    <form action="download.php" method="post">
-      <input type="text" name="youtube_url" placeholder={placeholder} size="50" required />
-      <br /><br />
-      <div class="documents-container">
-        {groups.map((group) => (
-          <div>
-            <h3>{group.title}</h3>
-            {group.buttons.map((button) => (
-              <button type="submit" name="action" value={button.value}>{button.label}</button>
-            ))}
-            {group.more && (
-              <>
-                <br /><br />
-                <details>
-                  <summary>{group.more.title}</summary>
-                  {group.more.buttons.map((button) => (
-                    <button type="submit" name="action" value={button.value}>{button.label}</button>
-                  ))}
-                </details>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-    </form>
-    <br />
-    <AvailableServices />
-  </div>
-  <div id="loadingModal" class="modal" style="display: none;">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>処理中なのでちょっとまってくださいね</h2>
-      <img src="/imgs/loading.jpg" alt="ローディング中のカールツァイス" class="dlpicture" />
-      <p>ダウンロードは正常に開始しています！<br />数十秒くらいかかるかもしれないので、ちょっとお待ちください。</p>
+<SiteLayout
+    title={pageTitle}
+    description={description}
+    canonicalPath={canonicalPath}
+>
+    <hr />
+    <div class="documents-container">
+        <br />
+        {hasNotice && (
+            <div class="message-container">
+                <slot name="notice" />
+                {noticeDate && <i>{noticeDate}</i>}
+            </div>
+        )}
+        {showBrand && <p style="text-align:center;">yt-dlp on Motchiy</p>}
+        <h1 style="text-align:center;">{heading}</h1>
+        <form action="download.php" method="post">
+            <input
+                type="text"
+                name="youtube_url"
+                placeholder={placeholder}
+                size="50"
+                required
+            />
+            <br />
+            <br />
+            <div class="documents-container">
+                {groups.map((group) => (
+                    <div>
+                        <h3>{group.title}</h3>
+                        {group.buttons.map((button) => (
+                            <button
+                                type="submit"
+                                name="action"
+                                value={button.value}
+                            >
+                                {button.label}
+                            </button>
+                        ))}
+                        {group.more && (
+                            <>
+                                <br />
+                                <br />
+                                <details>
+                                    <summary>{group.more.title}</summary>
+                                    {group.more.buttons.map((button) => (
+                                        <button
+                                            type="submit"
+                                            name="action"
+                                            value={button.value}
+                                        >
+                                            {button.label}
+                                        </button>
+                                    ))}
+                                </details>
+                            </>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </form>
+        <br />
+        <AvailableServices />
     </div>
-  </div>
-  <script is:inline src="/download-1.js" defer></script>
+    <div id="loadingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">
+                &times;
+            </span>
+            <h2>処理中なのでちょっとまってくださいね</h2>
+            <img
+                src="/imgs/loading.jpg"
+                alt="ローディング中のカールツァイス"
+                class="dlpicture"
+            />
+            <p>
+                ダウンロードは正常に開始しています！
+                <br />
+                数十秒くらいかかるかもしれないので、ちょっとお待ちください。
+            </p>
+        </div>
+    </div>
+    <script is:inline src="/download.js" defer></script>
 </SiteLayout>
