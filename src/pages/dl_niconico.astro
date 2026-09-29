@@ -1,0 +1,10 @@
+---
+import Downloader from '../components/Downloader.astro';
+const description = 'yt-dlp on Motchiyでは、ニコニコ動画の動画、音声、サムネイルのダウンロードが行えます。完全無料でログインなどは不要、安全に動画をダウンロードできます！';
+const groups = [
+  { title: '動画', buttons: [{ label: 'MP4', value: 'mp4' }, { label: 'AVI', value: 'avi' }], more: { title: 'その他の動画コーデック', buttons: [{ label: 'FLV', value: 'flv' }, { label: 'MKV', value: 'mkv' }, { label: 'MOV', value: 'mov' }, { label: 'WEBM', value: 'webm' }] } },
+  { title: '音声', buttons: [{ label: 'MP3', value: 'mp3' }, { label: 'WAV', value: 'wav' }], more: { title: 'その他の音声コーデック', buttons: [{ label: 'OGG', value: 'ogg' }, { label: 'F4A', value: 'f4a' }, { label: 'FLAC', value: 'flac' }, { label: 'ALAC', value: 'alac' }, { label: 'AAC', value: 'aac' }, { label: 'M4A', value: 'm4a' }, { label: 'OPUS', value: 'opus' }] } },
+  { title: 'サムネイル', buttons: [{ label: 'JPEG', value: 'jpg' }, { label: 'PNG', value: 'png' }], more: { title: 'その他の画像形式', buttons: [{ label: 'WEBP', value: 'webp' }, { label: 'BMP', value: 'bmp' }, { label: 'AVIF', value: 'avif' }, { label: 'GIF', value: 'gif' }] } },
+];
+---
+<Downloader pageTitle="yt-dlp on Motchiy - ニコニコ動画を完全無料でダウンロード！" description={description} canonicalPath="/dl_niconico.html" heading="ニコニコ動画ダウンロード" placeholder="ニコニコ動画のURLを入力" groups={groups} />

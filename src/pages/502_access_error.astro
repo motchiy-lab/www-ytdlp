@@ -1,0 +1,10 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+const description = 'yt-dlp on Motchiyで元サービスへのアクセスに失敗し、エラーが発生しました。';
+---
+<ErrorPage pageTitle="yt-dlp on Motchiy - Access Error" description={description} canonicalPath="/502_access_error.html" heading="Access Error / アクセスエラー" image="https://ytdlp.motchiy.com/imgs/502_ae.jpg" imageAlt="アクセスエラーなカールツァイス">
+  <p>yt-dlp on Motchiyでのダウンロード中にエラーが発生しました。<br />ダウンロード元サービスへのアクセスに障害が発生しています。</p>
+  <p>ダウンロードしようとした動画サイトにアクセスし、正常に閲覧できるかどうかをご確認ください。<br />アクセスができた場合は、yt-dlp on Motchiyに障害が発生しています。</p>
+  <p>しばらく待ってから再びお試しください。<br />それでもこの状況が治らない場合は、<a href="https://x.com/leoved-kuru/">僕のTwitter</a>にDMをください。<br />なお、その場合は何をダウンロードしようとしたのかや、端末情報などを添えていただけると解決がしやすくなります。ご協力よろしくお願いします。</p>
+  <p><a href="/">トップページ</a>へ戻ることができます。</p>
+</ErrorPage>

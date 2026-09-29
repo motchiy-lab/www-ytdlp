@@ -1,0 +1,36 @@
+---
+import Downloader from '../components/Downloader.astro';
+
+const groups = [
+  {
+    title: '動画',
+    buttons: [{ label: 'MP4', value: 'mp4' }, { label: 'AVI', value: 'avi' }],
+    more: { title: 'その他の動画コーデック', buttons: [{ label: 'FLV', value: 'flv' }, { label: 'MKV', value: 'mkv' }, { label: 'MOV', value: 'mov' }, { label: 'WEBM', value: 'webm' }] },
+  },
+  {
+    title: '音声',
+    buttons: [{ label: 'MP3', value: 'mp3' }, { label: 'WAV', value: 'wav' }],
+    more: { title: 'その他の音声コーデック', buttons: [{ label: 'OGG', value: 'ogg' }, { label: 'F4A', value: 'f4a' }, { label: 'FLAC', value: 'flac' }, { label: 'ALAC', value: 'alac' }, { label: 'AAC', value: 'aac' }, { label: 'M4A', value: 'm4a' }, { label: 'OPUS', value: 'opus' }] },
+  },
+  {
+    title: 'サムネイル',
+    buttons: [{ label: 'JPEG', value: 'jpg' }, { label: 'PNG', value: 'png' }],
+    more: { title: 'その他の画像形式', buttons: [{ label: 'WEBP', value: 'webp' }, { label: 'BMP', value: 'bmp' }, { label: 'AVIF', value: 'avif' }, { label: 'GIF', value: 'gif' }] },
+  },
+];
+---
+
+<Downloader
+  pageTitle="yt-dlp on Motchiy - 完全無料の簡単YouTubeダウンローダー！"
+  description="yt-dlp on Motchiyはワンクリックで簡単にYouTube動画、音声、サムネイルのダウンロードが可能なサイトです。しつこい広告や厄介な登録も一切なし！"
+  canonicalPath="/"
+  heading="yt-dlp on Motchiy"
+  placeholder="YouTube動画のURLを入力"
+  groups={groups}
+  showBrand={false}
+  noticeDate="2026/8/28"
+>
+  <Fragment slot="notice">
+    完全に動作不良です。<br />当分動かせないかもしれません。
+  </Fragment>
+</Downloader>

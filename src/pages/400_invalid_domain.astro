@@ -1,0 +1,22 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+---
+<ErrorPage pageTitle="yt-dlp on Motchiy - Invalid Domain" description="yt-dlp on Motchiyに適切ではないドメインが送信されました。" canonicalPath="/400_invalid_domain.html" heading="Invalid Domain / 不適切なドメイン" image="https://ytdlp.motchiy.com/imgs/400_id.jpg" imageAlt="Invalid Domainなカールツァイス">
+  <p>
+    <b>現在、yt-dlp on Motchiyでは、特定の動画配信サービスのみに対応しています。</b><br />
+    ダウンロードしようとしたURLが非対応のサービスになっているかもしれません！<br />
+    アドレスを確認してから、再度お試しください。
+  </p>
+  <p>
+    なお、現時点で対応しているサービス、ドメインは次の4種です。<br />
+    リンク先から、個別のサービス用ダウンローダーへジャンプすることができます。
+  </p>
+  <ul>
+    <li><a href="/">YouTube(youtube.comもしくはyoutu.be)</a></li>
+    <li><a href="/dl_niconico.html">ニコニコ動画(nicovideo.jpもしくはmico.ms)</a></li>
+    <li><a href="/dl_bilibili.html">bilibili(bilibili.comもしくはb23.tv)</a></li>
+    <li><a href="/dl_soundcloud.html">Soundcloud(soundcloud.com)</a></li>
+  </ul>
+  <p>今後、現在未対応の各種サービスにも順次対応していく予定です。<br />そのため、それらのサービスから動画をダウンロードしたい場合、完成までお待ちください。</p>
+  <p><a href="/">トップページ</a>へ戻るか、なにかしらのバグである場合は<a href="https://x.com/leoved-kuru/">僕のTwitter</a>へご連絡ください。</p>
+</ErrorPage>

@@ -1,0 +1,8 @@
+---
+import ErrorPage from '../components/ErrorPage.astro';
+const description = 'リクエストの頻度が多すぎます。yt-dlp on Motchiyでは、サーバーの負荷対策のため、一分間のクールタイムを設定しています。';
+---
+<ErrorPage pageTitle="yt-dlp on Motchiy - 429 Too Many Requests" description={description} canonicalPath="/429.html" heading="429 Too Many Requests / リクエスト頻度が多すぎます！" image="https://ytdlp.motchiy.com/imgs/429.jpg" imageAlt="429 Too Many Requestsなカールツァイス">
+  <p>リクエストを送る頻度が高すぎます。<br />yt-dlp on Motchiyでは、サーバーの負荷対策のため動作を一分に一回に設定しています。</p>
+  <p><a href="/">トップページ</a>へ戻り、一分ほどお待ちいただいてから再度のダウンロードをしてください。</p>
+</ErrorPage>
