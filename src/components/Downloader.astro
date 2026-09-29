@@ -12,6 +12,7 @@ interface Props {
     pageTitle: string;
     description: string;
     canonicalPath: string;
+    platform: "youtube" | "bilibili" | "niconico" | "soundcloud" | "tiktok" | "twitch";
     heading: string;
     placeholder: string;
     groups: FormatGroup[];
@@ -23,6 +24,7 @@ const {
     pageTitle,
     description,
     canonicalPath,
+    platform,
     heading,
     placeholder,
     groups,
@@ -48,10 +50,10 @@ const hasNotice = Astro.slots.has("notice") || Boolean(noticeDate);
         )}
         {showBrand && <p style="text-align:center;">yt-dlp on Motchiy</p>}
         <h1 style="text-align:center;">{heading}</h1>
-        <form action="download.php" method="post">
+        <form class="download-form" data-platform={platform}>
             <input
                 type="text"
-                name="youtube_url"
+                name="videoUrl"
                 placeholder={placeholder}
                 size="50"
                 required
@@ -65,7 +67,7 @@ const hasNotice = Astro.slots.has("notice") || Boolean(noticeDate);
                         {group.buttons.map((button) => (
                             <button
                                 type="submit"
-                                name="action"
+                                name="fileFormat"
                                 value={button.value}
                             >
                                 {button.label}
@@ -80,7 +82,7 @@ const hasNotice = Astro.slots.has("notice") || Boolean(noticeDate);
                                     {group.more.buttons.map((button) => (
                                         <button
                                             type="submit"
-                                            name="action"
+                                            name="fileFormat"
                                             value={button.value}
                                         >
                                             {button.label}
@@ -93,26 +95,12 @@ const hasNotice = Astro.slots.has("notice") || Boolean(noticeDate);
                 ))}
             </div>
         </form>
+        <p class="request-status" role="status" aria-live="polite"></p>
         <br />
         <AvailableServices />
     </div>
-    <div id="loadingModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">
-                &times;
-            </span>
-            <h2>処理中なのでちょっとまってくださいね</h2>
-            <img
-                src="/imgs/loading.jpg"
-                alt="ローディング中のカールツァイス"
-                class="dlpicture"
-            />
-            <p>
-                ダウンロードは正常に開始しています！
-                <br />
-                数十秒くらいかかるかもしれないので、ちょっとお待ちください。
-            </p>
-        </div>
-    </div>
-    <script is:inline src="/download.js" defer></script>
 </SiteLayout>
+
+<script>
+    import "../scripts/request-download";
+</script>
