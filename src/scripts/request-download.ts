@@ -1,5 +1,5 @@
-const requestUrl = "https://webhook.site/8e87f1a4-6bf4-4137-bff8-1dee56b7488a";
-const taskUrl = "https://webhook.site/8e87f1a4-6bf4-4137-bff8-1dee56b7488a";
+const requestUrl = "https://api.motchiy.com/ytdlp/request";
+const taskUrl = "https://api.motchiy.com/ytdlp/tasks";
 const userIp = "127.0.0.2";
 const taskPollIntervalMs = 1000;
 
