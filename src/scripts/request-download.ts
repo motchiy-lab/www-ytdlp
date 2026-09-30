@@ -1,7 +1,7 @@
-const requestUrl = "http://localhost:8080/ytdlp/request";
-const taskUrl = "http://localhost:8080/ytdlp/tasks";
+const requestUrl = "https://webhook.site/8e87f1a4-6bf4-4137-bff8-1dee56b7488a";
+const taskUrl = "https://webhook.site/8e87f1a4-6bf4-4137-bff8-1dee56b7488a";
 const userIp = "127.0.0.2";
-const taskPollIntervalMs = 1_000;
+const taskPollIntervalMs = 1000;
 
 const forms = document.querySelectorAll<HTMLFormElement>(".download-form");
 
