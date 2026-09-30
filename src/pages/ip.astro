@@ -1,4 +1,6 @@
 ---
+export const prerender = false;
+
 const clientIp = Astro.clientAddress;
 const cfConnectingIp = Astro.request.headers.get("CF-Connecting-IP");
 const xForwardedFor = Astro.request.headers.get("X-Forwarded-For");
