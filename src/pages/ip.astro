@@ -1,0 +1,31 @@
+---
+const clientIp = Astro.clientAddress;
+const cfConnectingIp = Astro.request.headers.get("CF-Connecting-IP");
+const xForwardedFor = Astro.request.headers.get("X-Forwarded-For");
+const cfRay = Astro.request.headers.get("CF-Ray");
+---
+
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Cloudflare IP Test</title>
+</head>
+
+<body>
+    <h1>Cloudflare IP Test</h1>
+
+    <h2>Astro.clientAddress</h2>
+    <p>{clientIp ?? "取得できませんでした"}</p>
+
+    <h2>CF-Connecting-IP</h2>
+    <p>{cfConnectingIp ?? "取得できませんでした"}</p>
+
+    <h2>X-Forwarded-For</h2>
+    <p>{xForwardedFor ?? "取得できませんでした"}</p>
+
+    <h2>CF-Ray</h2>
+    <p>{cfRay ?? "取得できませんでした"}</p>
+</body>
+</html>
