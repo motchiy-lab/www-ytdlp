@@ -1,6 +1,6 @@
 const requestUrl = "https://api.motchiy.com/ytdlp/request";
 const taskUrl = "https://api.motchiy.com/ytdlp/tasks";
-const userIp = "127.0.0.2";
+const clientIpUrl = "/ip.json";
 const taskPollIntervalMs = 1000;
 
 const forms = document.querySelectorAll<HTMLFormElement>(".download-form");
@@ -22,6 +22,26 @@ async function readJson(response: Response): Promise<unknown> {
     } catch {
         throw new Error("APIから有効なJSONレスポンスが返されませんでした。");
     }
+}
+
+async function getClientIp(): Promise<string> {
+    const response = await fetch(clientIpUrl);
+    if (!response.ok) {
+        throw new Error(`IPアドレスの取得に失敗しました (HTTP ${response.status})`);
+    }
+
+    const result = await readJson(response);
+    if (
+        typeof result !== "object" ||
+        result === null ||
+        !("clientAddress" in result) ||
+        typeof result.clientAddress !== "string" ||
+        result.clientAddress.length === 0
+    ) {
+        throw new Error("IPアドレスのレスポンス形式が正しくありません。");
+    }
+
+    return result.clientAddress;
 }
 
 async function pollTask(taskId: string, status: HTMLElement): Promise<void> {
@@ -90,6 +110,7 @@ for (const form of forms) {
         status.classList.remove("request-error");
 
         try {
+            const userIp = await getClientIp();
             const response = await fetch(requestUrl, {
                 method: "POST",
                 headers: {
