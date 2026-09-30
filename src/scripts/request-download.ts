@@ -136,6 +136,7 @@ for (const form of forms) {
             if (
                 typeof result !== "object" ||
                 result === null ||
+                !("task_id" in result) ||
                 typeof result.task_id !== "string" ||
                 result.task_id.length === 0
             ) {
