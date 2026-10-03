@@ -1,12 +1,13 @@
 const requestUrl = "https://api.motchiy.com/ytdlp/request";
 const taskUrl = "https://api.motchiy.com/ytdlp/tasks";
-const clientIpUrl = "/ip.json";
 const taskPollIntervalMs = 1000;
 
 const forms = document.querySelectorAll<HTMLFormElement>(".download-form");
 
 interface TaskResponse {
     status?: unknown;
+    message?: unknown;
+    error?: unknown;
     [key: string]: unknown;
 }
 
@@ -24,24 +25,27 @@ async function readJson(response: Response): Promise<unknown> {
     }
 }
 
-async function getClientIp(): Promise<string> {
-    const response = await fetch(clientIpUrl);
-    if (!response.ok) {
-        throw new Error(`IPアドレスの取得に失敗しました (HTTP ${response.status})`);
+async function readErrorMessage(response: Response): Promise<string> {
+    const responseText = await response.text();
+    if (responseText.length === 0) {
+        return `リクエストに失敗しました (HTTP ${response.status})`;
     }
 
-    const result = await readJson(response);
-    if (
-        typeof result !== "object" ||
-        result === null ||
-        !("clientAddress" in result) ||
-        typeof result.clientAddress !== "string" ||
-        result.clientAddress.length === 0
-    ) {
-        throw new Error("IPアドレスのレスポンス形式が正しくありません。");
+    try {
+        const result: unknown = JSON.parse(responseText);
+        if (
+            typeof result === "object" &&
+            result !== null &&
+            "error" in result &&
+            typeof result.error === "string"
+        ) {
+            return result.error;
+        }
+    } catch {
+        // Non-JSON error responses are displayed as-is.
     }
 
-    return result.clientAddress;
+    return responseText;
 }
 
 async function pollTask(taskId: string, status: HTMLElement): Promise<void> {
@@ -67,17 +71,25 @@ async function pollTask(taskId: string, status: HTMLElement): Promise<void> {
 
         const taskStatus = task.status.toLowerCase();
         if (taskStatus === "completed") {
-            status.textContent = `ダウンロードが完了しました。 (task_id: ${taskId})`;
+            const detail =
+                typeof task.message === "string" ? ` ${task.message}` : "";
+            status.textContent = `ダウンロードが完了しました。${detail} (task_id: ${taskId})`;
             return;
         }
 
         if (["failed", "error", "cancelled", "canceled"].includes(taskStatus)) {
             const detail =
-                typeof task.error === "string" ? `: ${task.error}` : "";
+                typeof task.message === "string"
+                    ? `: ${task.message}`
+                    : typeof task.error === "string"
+                      ? `: ${task.error}`
+                      : "";
             throw new Error(`タスクが${task.status}になりました${detail}`);
         }
 
-        status.textContent = `処理中です... 状態: ${task.status}`;
+        const detail =
+            typeof task.message === "string" ? ` (${task.message})` : "";
+        status.textContent = `処理中です... 状態: ${task.status}${detail}`;
     }
 }
 
@@ -110,7 +122,6 @@ for (const form of forms) {
         status.classList.remove("request-error");
 
         try {
-            const userIp = await getClientIp();
             const response = await fetch(requestUrl, {
                 method: "POST",
                 headers: {
@@ -118,16 +129,12 @@ for (const form of forms) {
                 },
                 body: JSON.stringify({
                     videoUrl,
-                    userIp,
                     fileFormat: submitter.value,
                     platform,
                 }),
             });
             if (!response.ok) {
-                const responseText = await response.text();
-                status.textContent =
-                    responseText ||
-                    `リクエストに失敗しました (HTTP ${response.status})`;
+                status.textContent = await readErrorMessage(response);
                 status.classList.add("request-error");
                 return;
             }
