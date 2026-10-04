@@ -1,5 +1,11 @@
 const requestUrl = "https://api.motchiy.com/ytdlp/request";
 const taskUrl = "https://api.motchiy.com/ytdlp/tasks";
+
+/*
+const requestUrl = "http://localhost:8080/ytdlp/request";
+const taskUrl = "http://localhost:8080/ytdlp/tasks";
+*/
+
 const taskPollIntervalMs = 1000;
 
 const forms = document.querySelectorAll<HTMLFormElement>(".download-form");
