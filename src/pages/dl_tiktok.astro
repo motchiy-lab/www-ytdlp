@@ -1,7 +1,7 @@
 ---
 import Downloader from "../components/Downloader.astro";
 const description =
-    "yt-dlp on Motchiyでは、Tiktokの動画、音声、サムネイルのダウンロードが行えます。完全無料でログインなどは不要、安全に動画をダウンロードできます！";
+    "yt-dlp on Motchiyでは、TikTokの動画、音声、サムネイルのダウンロードが行えます。完全無料でログインなどは不要、安全に動画をダウンロードできます！";
 const groups = [
     { title: "動画", buttons: [{ label: "動画", value: "mp4" }] },
     { title: "音声", buttons: [{ label: "音声", value: "mp3" }] },
@@ -10,18 +10,18 @@ const groups = [
 ---
 
 <Downloader
-    pageTitle="yt-dlp on Motchiy - Tiktok動画を完全無料でダウンロード！"
+    pageTitle="yt-dlp on Motchiy - TikTok動画を完全無料でダウンロード！"
     description={description}
     canonicalPath="/dl_tiktok.html"
     platform="tiktok"
-    heading="Tiktok動画ダウンロード"
-    placeholder="Tiktok動画のURLを入力"
+    heading="TikTok動画ダウンロード"
+    placeholder="TikTok動画のURLを入力"
     groups={groups}
 >
     <Fragment slot="notice">
-        現時点では、<b>Tiktokダウンローダーは試験的な運用を行っています。</b>
+        現時点では、<b>TikTokダウンローダーは試験的な運用を行っています。</b>
         <br />
-        今後のサービスの動作次第では、Tiktokダウンローダーは削除される可能性もあります。
+        今後のサービスの動作次第では、TikTokダウンローダーは削除される可能性もあります。
         <br />
         なお、現時点で正式な運用が行われているサービスについては、
         <a href="/services.html">対応サービス</a>のページをご覧ください。
