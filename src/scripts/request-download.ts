@@ -8,6 +8,7 @@ interface TaskResponse {
     status?: unknown;
     message?: unknown;
     error?: unknown;
+    download_url?: unknown;
     [key: string]: unknown;
 }
 
@@ -71,9 +72,24 @@ async function pollTask(taskId: string, status: HTMLElement): Promise<void> {
 
         const taskStatus = task.status.toLowerCase();
         if (taskStatus === "completed") {
+            if (typeof task.download_url !== "string" || task.download_url.length === 0) {
+                throw new Error("完了レスポンスに有効なdownload_urlがありません。");
+            }
+
+            let downloadUrl: URL;
+            try {
+                downloadUrl = new URL(task.download_url);
+            } catch {
+                throw new Error("完了レスポンスのdownload_urlが正しくありません。");
+            }
+            if (downloadUrl.protocol !== "https:") {
+                throw new Error("download_urlにはHTTPSのURLが必要です。");
+            }
+
             const detail =
                 typeof task.message === "string" ? ` ${task.message}` : "";
             status.textContent = `ダウンロードが完了しました。${detail} (task_id: ${taskId})`;
+            window.location.assign(downloadUrl.href);
             return;
         }
 
