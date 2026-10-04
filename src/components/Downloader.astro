@@ -12,7 +12,13 @@ interface Props {
     pageTitle: string;
     description: string;
     canonicalPath: string;
-    platform: "youtube" | "bilibili" | "niconico" | "soundcloud" | "tiktok" | "twitch";
+    platform:
+        | "youtube"
+        | "bilibili"
+        | "niconico"
+        | "soundcloud"
+        | "tiktok"
+        | "twitch";
     heading: string;
     placeholder: string;
     groups: FormatGroup[];
@@ -31,7 +37,7 @@ const {
     noticeDate,
     showBrand = true,
 } = Astro.props;
-const hasNotice = Astro.slots.has("notice") || Boolean(noticeDate);
+const hasNotice = false;
 ---
 
 <SiteLayout
