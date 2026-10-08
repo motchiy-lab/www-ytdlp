@@ -102,6 +102,23 @@ const hasNotice = false;
             </div>
         </form>
         <p class="request-status" role="status" aria-live="polite"></p>
+        <dialog class="loading-modal" id="loadingModal" aria-labelledby="loadingModalTitle">
+            <div class="modal-content">
+                <button class="modal-close" type="button" aria-label="閉じる">
+                    &times;
+                </button>
+                <h2 id="loadingModalTitle">処理中なのでちょっとまってくださいね</h2>
+                <img
+                    src="/imgs/loading.jpg"
+                    alt="ローディング中のカールツァイス"
+                    class="dlpicture"
+                />
+                <p>
+                    ダウンロードの準備をしています。完了まで数十秒ほどかかることがあります。
+                </p>
+                <p class="loading-status" role="status" aria-live="polite"></p>
+            </div>
+        </dialog>
         <br />
         <AvailableServices />
     </div>

@@ -9,6 +9,15 @@ const taskUrl = "http://localhost:8080/ytdlp/tasks";
 const taskPollIntervalMs = 1000;
 
 const forms = document.querySelectorAll<HTMLFormElement>(".download-form");
+const loadingModal = document.querySelector<HTMLDialogElement>("#loadingModal");
+const modalStatus = loadingModal?.querySelector<HTMLElement>(".loading-status");
+
+function updateStatus(status: HTMLElement, message: string): void {
+    status.textContent = message;
+    if (modalStatus) {
+        modalStatus.textContent = message;
+    }
+}
 
 interface TaskResponse {
     status?: unknown;
@@ -94,7 +103,11 @@ async function pollTask(taskId: string, status: HTMLElement): Promise<void> {
 
             const detail =
                 typeof task.message === "string" ? ` ${task.message}` : "";
-            status.textContent = `ダウンロードが完了しました。${detail} (task_id: ${taskId})`;
+            updateStatus(
+                status,
+                `ダウンロードが完了しました。${detail} (task_id: ${taskId})`,
+            );
+            loadingModal?.close();
             window.location.assign(downloadUrl.href);
             return;
         }
@@ -111,7 +124,7 @@ async function pollTask(taskId: string, status: HTMLElement): Promise<void> {
 
         const detail =
             typeof task.message === "string" ? ` (${task.message})` : "";
-        status.textContent = `処理中です... 状態: ${task.status}${detail}`;
+        updateStatus(status, `処理中です... 状態: ${task.status}${detail}`);
     }
 }
 
@@ -140,8 +153,9 @@ for (const form of forms) {
         buttons.forEach((button) => {
             button.disabled = true;
         });
-        status.textContent = "リクエストを送信しています...";
+        updateStatus(status, "リクエストを送信しています...");
         status.classList.remove("request-error");
+        loadingModal?.showModal();
 
         try {
             const response = await fetch(requestUrl, {
@@ -156,8 +170,9 @@ for (const form of forms) {
                 }),
             });
             if (!response.ok) {
-                status.textContent = await readErrorMessage(response);
+                updateStatus(status, await readErrorMessage(response));
                 status.classList.add("request-error");
+                loadingModal?.close();
                 return;
             }
 
@@ -172,15 +187,21 @@ for (const form of forms) {
                 throw new Error("POSTレスポンスに有効なtask_idがありません。");
             }
 
-            status.textContent = `リクエストを受け付けました。タスクID: ${result.task_id}`;
+            updateStatus(
+                status,
+                `リクエストを受け付けました。タスクID: ${result.task_id}`,
+            );
             await pollTask(result.task_id, status);
         } catch (error) {
             console.error("Download request failed:", error);
-            status.textContent =
+            updateStatus(
+                status,
                 error instanceof Error
                     ? error.message
-                    : "APIへのリクエストに失敗しました。";
+                    : "APIへのリクエストに失敗しました。",
+            );
             status.classList.add("request-error");
+            loadingModal?.close();
         } finally {
             buttons.forEach((button) => {
                 button.disabled = false;
@@ -188,3 +209,8 @@ for (const form of forms) {
         }
     });
 }
+
+loadingModal?.querySelector<HTMLButtonElement>(".modal-close")?.addEventListener(
+    "click",
+    () => loadingModal.close(),
+);

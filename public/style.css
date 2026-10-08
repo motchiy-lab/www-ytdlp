@@ -349,6 +349,53 @@ footer {
     color: #b00020;
 }
 
+.loading-modal {
+    width: min(90vw, 480px);
+    max-width: none;
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.loading-modal::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-content {
+    position: relative;
+    padding: 24px;
+}
+
+.modal-content h2 {
+    margin: 12px 24px 20px;
+}
+
+.dlpicture {
+    display: block;
+    width: min(100%, 320px);
+    height: auto;
+    margin: 0 auto 16px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0;
+    background: transparent;
+    color: #333;
+    font-size: 28px;
+}
+
+.loading-status {
+    min-height: 1.5em;
+}
+
 .download-form .documents-container {
     display: flex;
     justify-content: center;
